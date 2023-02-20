@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<!DOCTYPE beans [-->
+<!--        <!ELEMENT beans (bean*)>-->
+
+<!--        <!ELEMENT bean (property*)>-->
+<!--        <!ELEMENT property (#PCDATA)>-->
+
+<!--        <!ATTLIST bean id ID #REQUIRED>-->
+<!--        <!ATTLIST bean class CDATA #IMPLIED>-->
+
+<!--        <!ATTLIST property name CDATA #IMPLIED>-->
+<!--        <!ATTLIST property ref IDREF #IMPLIED>-->
+
+<!--        ]>-->
+<beans>
+    <bean id="UserBasicDao" class="com.siwen.qqzone.dao.impl.UserBasicDaoImpl"></bean>
+    <bean id="TopicDao" class="com.siwen.qqzone.dao.impl.TopicDaoImpl"></bean>
+    <bean id="ReplyDao" class="com.siwen.qqzone.dao.impl.ReplyDaoImpl"></bean>
+    <bean id="HostReplyDao" class="com.siwen.qqzone.dao.impl.HostReplyDaoImpl"></bean>
+
+    <bean id="UserBasicService" class="com.siwen.qqzone.service.impl.UserBasicServiceImpl">
+        <property name="userBasicDao" ref="UserBasicDao"></property>
+    </bean>
+
+    <bean id="TopicService" class="com.siwen.qqzone.service.impl.TopicServiceImpl">
+        <property name="topicDao" ref="TopicDao"></property>
+    </bean>
+
+    <bean id="user" class="com.siwen.qqzone.controllers.UserController">
+        <property name="userBasicService" ref="UserBasicService"></property>
+        <property name="topicService" ref="TopicService"></property>
+    </bean>
+
+
+    <bean id="page" class="com.siwen.qqzone.controllers.PageController"></bean>
+
+</beans>
