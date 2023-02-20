@@ -23,6 +23,10 @@ public class HostReply {
     private Integer id;
     private Reply reply;
     private UserBasic author;
-    private String content ;
+    private String content;
     private LocalDateTime hostReplyDate;
+
+    public HostReply(Integer id) {
+        this.id = id;
+    }
 }

@@ -23,7 +23,7 @@
             </tr>
             <tr th:unless="${#lists.isEmpty(session.friend.topicList)}" th:each="topic : ${session.friend.topicList}">
                 <td th:text="${topic.id}"></td>
-                <td class="left"><a href="detail.html" th:text="${topic.title}"></a></td>
+                <td class="left"><a target="_top" th:href="@{|/topic.do?operate=topicDetail&id=${topic.id}|}" th:text="${topic.title}"></a></td>
                 <td th:text="${topic.topicDate}"></td>
                 <td>删除</td>
             </tr>

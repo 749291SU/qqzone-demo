@@ -31,6 +31,7 @@ public class UserController {
             userBasic.setTopicList(topicList);
             session.setAttribute("userBasic", userBasic);
             session.setAttribute("friend", userBasic);
+//            session.setAttribute("curMain", "frames/main");
             return "render:index";
         } else {
             return "redirect:login";

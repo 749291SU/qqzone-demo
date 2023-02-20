@@ -27,6 +27,7 @@ public class Topic {
     private LocalDateTime topicDate;
     private List<Reply> replyList;
 
-
-
+    public Topic(Integer id) {
+        author = new UserBasic(id);
+    }
 }

@@ -26,4 +26,8 @@ public class Reply {
     private String content;
     private LocalDateTime replyDate;
     private HostReply hostReply;
+
+    public Reply(Integer id) {
+        this.id = id;
+    }
 }
