@@ -46,5 +46,8 @@
     <bean id="topic" class="com.siwen.qqzone.controllers.TopicController">
         <property name="topicService" ref="TopicService"></property>
     </bean>
-
+`
+    <bean id="reply" class="com.siwen.qqzone.controllers.ReplyController">
+        <property name="replyService" ref="ReplyService"></property>
+    </bean>
 </beans>

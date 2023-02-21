@@ -13,6 +13,10 @@
         function hiddenDelImg(imgId) {
             document.getElementById(imgId).style.display = 'none';
         }
+
+        function deleteReply(replyId) {
+            window.location.href = "/reply.do?operate=deleteReply&replyId=" + replyId;
+        }
     </script>
 </head>
 <body>
@@ -30,7 +34,7 @@
                     <div class="h32 center" style="width:100%;" th:text="*{author.nickName}"></div>
                 </td>
                 <td class="topic_title" onmousemove="showDelImg('img01')" onmouseout="hiddenDelImg('img01')">
-                    <img id="img01"
+                    <img th:if="${session.userBasic.id==session.friend.id}" id="img01"
                          style="float: right;margin-top:2px;margin-right:2px;display: none;width:24px;height: 24px;"
                          src="../imgs/del.jpg"/>
                     <span th:text="*{title}"></span>
@@ -52,11 +56,11 @@
                     </div>
                     <div class="h32 center" style="width:100%;" th:text="${reply.author.nickName}"></div>
                 </td>
-                <td class="reply_title" onmouseover="showDelImg('img02')" onmouseout="hiddenDelImg('img02')">
+                <td class="reply_title" th:onmouseover="@{|showDelImg(${reply.id.toString()})|}" th:onmouseout="@{|hiddenDelImg(${reply.id.toString()})|}">
                     <span th:text="@{|回复:${session.topic.content}|}"></span>
-                    <img id="img02"
+                    <img th:if="${session.userBasic.id==session.friend.id}" th:id="${reply.id.toString()}"
                          style="float: right;margin-top:2px;margin-right:2px;display: none;width:24px;height: 24px;"
-                         src="../imgs/del.jpg"/>
+                         th:src="@{/imgs/del.jpg}" th:onclick="@{|deleteReply(${reply.id})|}"/>
                     <span class="title_date_right" th:text="${reply.replyDate}"></span>
                 </td>
             </tr>
@@ -78,15 +82,17 @@
 </div>
 <div id="div_add_reply">
     <p class="add_reply_title">添加回复</p>
-    <form action="" method="post">
+    <form th:action="@{/reply.do}" method="post">
+        <input type="hidden" name="operate" value="addReply">
+        <input type="hidden" name="authorId" th:value="${session.userBasic.id}">
         <table>
             <tr>
                 <th style="width: 25%">回复日志：</th>
-                <td><input type="text" value="《萧某今天就和天下群雄决一死战，你们一起上吧！》" readonly/></td>
+                <td><input type="text" th:value="${session.topic.title}" readonly/></td>
             </tr>
             <tr>
                 <th>回复内容：</th>
-                <td><textarea rows="3"></textarea></td>
+                <td><textarea name="content" rows="3"></textarea></td>
             </tr>
             <tr>
                 <th colspan="2">

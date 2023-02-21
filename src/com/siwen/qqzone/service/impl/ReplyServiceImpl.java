@@ -1,11 +1,12 @@
 package com.siwen.qqzone.service.impl;
 
 import com.siwen.qqzone.dao.interf.ReplyDao;
+import com.siwen.qqzone.pojo.HostReply;
 import com.siwen.qqzone.pojo.Reply;
-import com.siwen.qqzone.pojo.Topic;
 import com.siwen.qqzone.service.interf.HostReplySevice;
 import com.siwen.qqzone.service.interf.ReplyService;
 import com.siwen.qqzone.service.interf.UserBasicService;
+import com.siwen.qqzone.utils.ListUtils;
 
 import java.util.List;
 
@@ -25,12 +26,42 @@ public class ReplyServiceImpl implements ReplyService {
     private HostReplySevice hostReplyService;
 
     @Override
-    public List<Reply> getReplyList(Topic topic) {
-        List<Reply> replyList = replyDao.getReplyList(topic);
+    public Reply getReply(Integer replyId) {
+        List<Reply> replyList = replyDao.getReply(replyId);
+        if (!ListUtils.listIsEmpty(replyList)) {
+            Reply reply = replyList.get(0);
+            packReply(reply);
+            return reply;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Reply> getReplyList(Integer topicId) {
+        List<Reply> replyList = replyDao.getReplyList(topicId);
         for (Reply reply : replyList) {
             packReply(reply);
         }
         return replyList;
+    }
+
+    @Override
+    public void addReply(Reply reply) {
+        replyDao.addReply(reply);
+    }
+
+    @Override
+    public void deleteReply(Integer replyId) {
+        deleteReply(getReply(replyId));
+    }
+
+    @Override
+    public void deleteReply(Reply reply) {
+        HostReply hostReply = hostReplyService.getHostReply(reply);
+        if (hostReply != null) {
+            hostReplyService.deleteHostReply(hostReply);
+        }
+        replyDao.deleteReply(reply.getId());
     }
 
     private void packReply(Reply reply) {

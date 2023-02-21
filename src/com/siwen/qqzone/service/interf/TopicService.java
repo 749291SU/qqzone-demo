@@ -8,5 +8,7 @@ import java.util.List;
 public interface TopicService {
     List<Topic> getTopicList(UserBasic userBasic);
 
-    Topic getTopic(Integer id);
+    Topic getTopic(Integer topicId);
+
+    void deleteTopic(Integer topicId);
 }

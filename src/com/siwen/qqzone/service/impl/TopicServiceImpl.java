@@ -1,11 +1,13 @@
 package com.siwen.qqzone.service.impl;
 
 import com.siwen.qqzone.dao.interf.TopicDao;
+import com.siwen.qqzone.pojo.Reply;
 import com.siwen.qqzone.pojo.Topic;
 import com.siwen.qqzone.pojo.UserBasic;
 import com.siwen.qqzone.service.interf.ReplyService;
 import com.siwen.qqzone.service.interf.TopicService;
 import com.siwen.qqzone.service.interf.UserBasicService;
+import com.siwen.qqzone.utils.ListUtils;
 
 import java.util.List;
 
@@ -34,14 +36,28 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public Topic getTopic(Integer id) {
-        Topic topic = topicDao.getTopic(id);
+    public Topic getTopic(Integer topicId) {
+        Topic topic = topicDao.getTopic(topicId);
         packTopic(topic);
         return topic;
     }
 
+    @Override
+    public void deleteTopic(Integer topicId) {
+        Topic topic = getTopic(topicId);
+        if (topicId != null) {
+            List<Reply> replyList = topic.getReplyList();
+            if (!ListUtils.listIsEmpty(replyList)) {
+                for (Reply reply : replyList) {
+                    replyService.deleteReply(reply);
+                }
+            }
+            topicDao.deleteTopic(topic.getId());
+        }
+    }
+
     private void packTopic(Topic topic) {
         topic.setAuthor(userBasicService.getUserBasic(topic.getAuthor().getId()));
-        topic.setReplyList(replyService.getReplyList(topic));
+        topic.setReplyList(replyService.getReplyList(topic.getId()));
     }
 }

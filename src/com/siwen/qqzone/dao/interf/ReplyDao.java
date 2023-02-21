@@ -1,17 +1,17 @@
 package com.siwen.qqzone.dao.interf;
 
 import com.siwen.qqzone.pojo.Reply;
-import com.siwen.qqzone.pojo.Topic;
 
 import java.util.List;
 
 public interface ReplyDao {
-    // get reply List of specified topic
-    List<Reply> getReplyList(Topic topic);
+    List<Reply> getReply(Integer replyId);
+    // get reply List of specified topicId
+    List<Reply> getReplyList(Integer topicId);
 
     // add reply
     Integer addReply(Reply reply);
 
     // delete reply
-    Integer deleteReply(Integer id);
+    Integer deleteReply(Integer replyId);
 }

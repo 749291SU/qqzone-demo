@@ -3,7 +3,6 @@ package com.siwen.qqzone.dao.impl;
 import com.siwen.qqzone.dao.base.BaseDao;
 import com.siwen.qqzone.dao.interf.HostReplyDao;
 import com.siwen.qqzone.pojo.HostReply;
-import com.siwen.qqzone.pojo.Reply;
 
 import java.util.List;
 
@@ -19,10 +18,10 @@ import java.util.List;
 
 public class HostReplyDaoImpl extends BaseDao<HostReply> implements HostReplyDao {
     @Override
-    public HostReply getHostReply(Reply reply) {
+    public HostReply getHostReply(Integer replyId) {
         String sql = "SELECT * FROM t_host_reply\n" +
                 "WHERE reply = ?";
-        List<HostReply> hostReplyList = super.query(sql, reply.getId());
+        List<HostReply> hostReplyList = super.query(sql, replyId);
         if (hostReplyList != null && !hostReplyList.isEmpty()) {
             return hostReplyList.get(0);
         }

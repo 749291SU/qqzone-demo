@@ -20,6 +20,11 @@ public class HostReplyServiceImpl implements HostReplySevice {
 
     @Override
     public HostReply getHostReply(Reply reply) {
-        return hostReplyDao.getHostReply(reply);
+        return hostReplyDao.getHostReply(reply.getId());
+    }
+
+    @Override
+    public void deleteHostReply(HostReply hostReply) {
+        hostReplyDao.deleteHostReply(hostReply.getId());
     }
 }

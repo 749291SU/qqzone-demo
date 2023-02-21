@@ -23,7 +23,7 @@ public interface TopicDao {
     Integer addTopic(Topic topic);
 
     // delete topic
-    Integer deleteTopic(Topic topic);
+    Integer deleteTopic(Integer topicId);
 
     // get details of specified topic
     Topic getTopic(Integer id);

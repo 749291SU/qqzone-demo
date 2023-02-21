@@ -1,11 +1,10 @@
 package com.siwen.qqzone.dao.interf;
 
 import com.siwen.qqzone.pojo.HostReply;
-import com.siwen.qqzone.pojo.Reply;
 
 public interface HostReplyDao {
-    // get hostReply of specified reply
-    HostReply getHostReply(Reply reply);
+    // get hostReply of specified replyId
+    HostReply getHostReply(Integer replyId);
 
     // add hostReply
     Integer addHostReply(HostReply hostReply);

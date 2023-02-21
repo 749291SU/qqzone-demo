@@ -1,11 +1,20 @@
 package com.siwen.qqzone.service.interf;
 
 import com.siwen.qqzone.pojo.Reply;
-import com.siwen.qqzone.pojo.Topic;
 
 import java.util.List;
 
 public interface ReplyService {
     // get all replies of specified topic
-    List<Reply> getReplyList(Topic topic);
+    Reply getReply(Integer replyId);
+
+    List<Reply> getReplyList(Integer topicId);
+
+    // add reply
+    void addReply(Reply reply);
+
+    // delete reply
+    void deleteReply(Integer replyId);
+
+    void deleteReply(Reply reply);
 }

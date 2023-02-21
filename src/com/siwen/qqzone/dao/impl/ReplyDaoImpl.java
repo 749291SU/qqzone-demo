@@ -3,7 +3,6 @@ package com.siwen.qqzone.dao.impl;
 import com.siwen.qqzone.dao.base.BaseDao;
 import com.siwen.qqzone.dao.interf.ReplyDao;
 import com.siwen.qqzone.pojo.Reply;
-import com.siwen.qqzone.pojo.Topic;
 
 import java.util.List;
 
@@ -19,23 +18,30 @@ import java.util.List;
 
 public class ReplyDaoImpl extends BaseDao<Reply> implements ReplyDao {
     @Override
-    public List<Reply> getReplyList(Topic topic) {
+    public List<Reply> getReply(Integer replyId) {
+        String sql = "SELECT * FROM t_reply\n" +
+                "WHERE id = ?";
+        return super.query(sql, replyId);
+    }
+
+    @Override
+    public List<Reply> getReplyList(Integer topicId) {
         String sql = "SELECT * FROM t_reply\n" +
                 "WHERE topic = ?";
-        return super.query(sql, topic.getId());
+        return super.query(sql, topicId);
     }
 
     @Override
     public Integer addReply(Reply reply) {
-        String sql = "INSERT INTO t_reply(id, content, replyDate, author, topic)\n" +
-                "VALUES(?, ?, ?, ?, ?)";
-        return super.update(sql, reply.getId(), reply.getContent(), reply.getReplyDate(), reply.getAuthor(), reply.getTopic());
+        String sql = "INSERT INTO t_reply(content, replyDate, author, topic)\n" +
+                "VALUES(?, ?, ?, ?)";
+        return super.update(sql, reply.getContent(), reply.getReplyDate().toString(), reply.getAuthor().getId(), reply.getTopic().getId());
     }
 
     @Override
-    public Integer deleteReply(Integer id) {
+    public Integer deleteReply(Integer replyId) {
         String sql = "DELETE FROM t_reply\n" +
                 "WHERE id = ?";
-        return super.update(sql, id);
+        return super.update(sql, replyId);
     }
 }
