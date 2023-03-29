@@ -6,7 +6,7 @@ import com.siwen.qqzone.pojo.Reply;
 import com.siwen.qqzone.service.interf.HostReplySevice;
 import com.siwen.qqzone.service.interf.ReplyService;
 import com.siwen.qqzone.service.interf.UserBasicService;
-import com.siwen.qqzone.utils.ListUtils;
+import com.siwen.myssm.utils.ListUtils;
 
 import java.util.List;
 

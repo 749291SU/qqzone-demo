@@ -1,9 +1,9 @@
 package com.siwen.qqzone.dao.impl;
 
-import com.siwen.qqzone.dao.base.BaseDao;
+import com.siwen.myssm.basedao.BaseDao;
 import com.siwen.qqzone.dao.interf.UserBasicDao;
 import com.siwen.qqzone.pojo.UserBasic;
-import com.siwen.qqzone.utils.ListUtils;
+import com.siwen.myssm.utils.ListUtils;
 
 import java.util.List;
 

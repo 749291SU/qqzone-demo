@@ -42,12 +42,12 @@
         <property name="userBasicService" ref="UserBasicService"></property>
         <property name="topicService" ref="TopicService"></property>
     </bean>
-    <bean id="page" class="com.siwen.qqzone.controllers.PageController"></bean>
+    <bean id="page" class="com.siwen.myssm.myspringmvc.PageController"></bean>
     <bean id="topic" class="com.siwen.qqzone.controllers.TopicController">
         <property name="topicService" ref="TopicService"></property>
     </bean>
-`
     <bean id="reply" class="com.siwen.qqzone.controllers.ReplyController">
         <property name="replyService" ref="ReplyService"></property>
     </bean>
+
 </beans>

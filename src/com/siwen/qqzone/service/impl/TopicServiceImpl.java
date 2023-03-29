@@ -7,7 +7,7 @@ import com.siwen.qqzone.pojo.UserBasic;
 import com.siwen.qqzone.service.interf.ReplyService;
 import com.siwen.qqzone.service.interf.TopicService;
 import com.siwen.qqzone.service.interf.UserBasicService;
-import com.siwen.qqzone.utils.ListUtils;
+import com.siwen.myssm.utils.ListUtils;
 
 import java.util.List;
 

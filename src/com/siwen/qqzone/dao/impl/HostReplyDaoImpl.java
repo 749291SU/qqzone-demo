@@ -1,11 +1,11 @@
 package com.siwen.qqzone.dao.impl;
 
-import com.siwen.qqzone.dao.base.BaseDao;
+
+import com.siwen.myssm.basedao.BaseDao;
 import com.siwen.qqzone.dao.interf.HostReplyDao;
 import com.siwen.qqzone.pojo.HostReply;
 
 import java.util.List;
-
 /**
  * @projectName: JavaWeb
  * @package: com.siwen.qqzone.dao.impl
